@@ -31,6 +31,7 @@ namespace VacunasAntiCovid
         public System.DateTime FechaAgrega { get; set; }
         public Nullable<System.DateTime> FechaModifica { get; set; }
         public Nullable<int> UsuarioModificaId { get; set; }
+        public bool EsPublico { get; set; }
     
         public virtual Usuario Usuario { get; set; }
         public virtual Usuario Usuario1 { get; set; }

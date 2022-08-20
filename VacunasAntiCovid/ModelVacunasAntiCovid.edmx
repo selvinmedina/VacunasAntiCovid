@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VacunasAntiCovidModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VacunasAntiCovidModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CentroDeAsistencia">
           <Key>
             <PropertyRef Name="Id" />
@@ -20,6 +20,7 @@
           <Property Name="FechaAgrega" Type="datetime" Nullable="false" />
           <Property Name="FechaModifica" Type="datetime" />
           <Property Name="UsuarioModificaId" Type="int" />
+          <Property Name="EsPublico" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Ciudadano">
           <Key>
@@ -363,8 +364,7 @@
             <End Role="Vacuna" EntitySet="Vacuna" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VacunasAntiCovidModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -386,6 +386,7 @@
           <NavigationProperty Name="Usuario" Relationship="Self.FK_CentroDeAsistencia_UsuarioAgregaId" FromRole="CentroDeAsistencia" ToRole="Usuario" />
           <NavigationProperty Name="Usuario1" Relationship="Self.FK_CentroDeAsistencia_UsuarioModificaId" FromRole="CentroDeAsistencia" ToRole="Usuario" />
           <NavigationProperty Name="HistoricoCiudadanoes" Relationship="Self.FK_HistoricoCiudadano_CentroDeAsistencia" FromRole="CentroDeAsistencia" ToRole="HistoricoCiudadano" />
+          <Property Name="EsPublico" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Ciudadano">
           <Key>
@@ -765,6 +766,7 @@
           <EntitySetMapping Name="CentroDeAsistencias">
             <EntityTypeMapping TypeName="VacunasAntiCovidModel.CentroDeAsistencia">
               <MappingFragment StoreEntitySet="CentroDeAsistencia">
+                <ScalarProperty Name="EsPublico" ColumnName="EsPublico" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
